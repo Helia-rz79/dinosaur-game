@@ -2,7 +2,7 @@
 
 ![19](https://github.com/user-attachments/assets/d6ef86ec-7184-4922-a3d9-0e84147b7e85)
 
--🔗 [Demo Project]()
+-🔗 [Demo Project](https://helia-rz79.github.io/dinosaur-game/)
 
 -🙍 Developed by helia rezaie
 
