@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dinosaur jumper</title>
+    <link rel="stylesheet" href="assets/css/master.css">
+</head>
+<body>
+    <div id="point">Point : <b id="myPoint"> &nbsp; 0</b></div>
+    <main id="game">
+        <div id="dinosaur" class=""></div>
+        <div id="cactus"></div>
+        <div id="try">
+            <h4>Game Over</h4>
+            <button id="btn">Try Again</button>
+        </div>
+    </main>
+</body>
+<script>
+    const game = document.querySelector('#game')
+    const dinosaur = document.querySelector('#dinosaur')
+    const cactus = document.querySelector('#cactus')
+    const myTry = document.querySelector('#try')
+    const btn = document.querySelector('#try>#btn')
+    const myPoint = document.querySelector('#myPoint')
+    let point = 0
+    let flag = false
+
+
+    function jumpD(){
+        if(!dinosaur.classList.contains('jump')){
+            dinosaur.classList.add('jump')
+            flag=true
+
+            setTimeout(() => {
+                dinosaur.classList.remove('jump')
+            }, 600);
+        }
+    }
+
+    document.addEventListener('keydown',(e)=>{
+        if(e.keyCode=32){
+            jumpD()
+        }
+    })
+
+    let check_game = setInterval((e)=>{
+        let dinosaur_top = parseInt(window.getComputedStyle(dinosaur).getPropertyValue('top'))
+        let cactus_left = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'))
+
+        if(cactus_left > 50 && cactus_left < 100 && dinosaur_top > 180){
+            dinosaur.style.animationPlayState = 'paused'
+            cactus.style.animationPlayState = 'paused'
+            game.style.animationPlayState = 'paused'
+            clearInterval(check_game)
+            myTry.style.display='block'
+            btn.addEventListener('click',()=>{
+               myTry.style.display='none'
+               window.location.reload()
+            })
+            
+        }
+
+        if(cactus_left < 10 && flag){
+            point += 10
+            flag=false
+            myPoint.innerHTML = point
+        }
+    
+    }, 10)
+    
+</script>
+</html>
